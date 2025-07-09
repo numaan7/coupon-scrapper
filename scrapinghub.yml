@@ -1,0 +1,40 @@
+# Zyte Scrapy Cloud configuration file
+# This file is used when deploying via GitHub integration
+
+# Project settings
+requirements_file: requirements.txt
+
+# Default stack (leave as default unless you need specific versions)
+# stack: scrapy:2.5-py39
+
+# Environment variables (optional - can also be set in Zyte dashboard)
+# environments:
+#   default:
+#     DOWNLOAD_DELAY: 2
+#     CONCURRENT_REQUESTS: 8
+
+# Deployment settings
+deploy:
+  # Files to include in deployment
+  include_paths:
+    - coupon_scraper/
+    - scrapy.cfg
+    - requirements.txt
+  
+  # Files to exclude from deployment
+  exclude_paths:
+    - __pycache__/
+    - "*.pyc"
+    - .git/
+    - venv/
+    - env/
+    - .env
+    - "*.log"
+    - test_*.json
+    - demo_*.json
+
+# Optional: Custom project settings
+# These will override settings.py when running on Zyte
+# project_settings:
+#   DOWNLOAD_DELAY: 3
+#   CONCURRENT_REQUESTS_PER_DOMAIN: 1

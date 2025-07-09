@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  coupon-scraper:
+    build: .
+    container_name: coupon-scraper
+    volumes:
+      - ./output:/app/output
+    environment:
+      - DOWNLOAD_DELAY=2
+      - CONCURRENT_REQUESTS=8
+    command: scrapy crawl demo_coupons -o output/coupons.json
+    
+  # Optional: Redis for distributed crawling
+  redis:
+    image: redis:7-alpine
+    container_name: coupon-scraper-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:
